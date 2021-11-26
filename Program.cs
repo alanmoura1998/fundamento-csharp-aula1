@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace dotnetcore
 {
@@ -25,12 +26,43 @@ namespace dotnetcore
         // Requisítos:
         // - Utilizar List (Avg, Max, Min, Where)
         // - Utilizar Classe Pessoa
+
         static void Main(string[] args)
         {
             Console.WriteLine("Iniciando Programa");
 
-            var xNotasZuqui = new int[] { 7, 6, 5, 3 };
-            var xNotasBronza = new int[] { 8, 9, 10, 8 };
+            var xNotasZuqui = new List<int> { 7, 6, 5, 3 };
+            var xNotasBronza = new List<int> { 8, 9, 10, 8 };
+            
+            var xMediaZuqui = CalcularMedia(xNotasZuqui);
+            Console.WriteLine($"Media Zuqui {xMediaZuqui} " + IsAprovado(xMediaZuqui));
+            
+            
+            var xMediaBronza = CalcularMedia(xNotasBronza);
+            Console.WriteLine($"Nota Bronza {xMediaBronza} " + IsAprovado(xMediaBronza));
+
+        }
+        static float CalcularMedia(List<int> notas)
+        {
+            var total = 0;
+
+            foreach(var nota in notas)
+            {
+                total += nota;
+            }
+            return total / notas.Count;
+        }
+
+        static string IsAprovado(float media)
+        {
+            if(media < 7)
+            {
+                return "Reprovado";
+            }
+            else
+            {
+                return "Aprovado";
+            }
         }
     }
 }
